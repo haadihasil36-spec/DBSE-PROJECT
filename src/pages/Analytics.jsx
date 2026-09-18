@@ -1,0 +1,13 @@
+import { BrainCircuit, ChartNoAxesCombined, MapPin, Sparkles, TrendingUp } from "lucide-react";
+import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { weeklyStudy, weeklySpend } from "../data/mockData";
+import { PageHeader, SectionTitle, StatCard } from "../components/UI";
+
+export default function Analytics(){return <div><PageHeader title="Analytics" description="Ask questions about your life data and discover patterns." icon={ChartNoAxesCombined}/>
+<div className="grid gap-4 sm:grid-cols-3"><StatCard label="Productivity score" value="84 / 100" change="+6%" icon="BrainCircuit" tone="violet"/><StatCard label="Best study location" value="Library" change="4.8 / 5" icon="MapPin" tone="blue"/><StatCard label="Weekly trend" value="Improving" change="+11%" icon="TrendingUp" tone="emerald"/></div>
+<div className="mt-6 grid gap-6 lg:grid-cols-2">
+<div className="card p-5"><SectionTitle>Study vs spending</SectionTitle><div className="h-72"><ResponsiveContainer><BarChart data={weeklyStudy.map((x,i)=>({...x,spend:weeklySpend[i].amount}))}><CartesianGrid vertical={false} strokeDasharray="3 3"/><XAxis dataKey="day" tickLine={false} axisLine={false}/><YAxis tickLine={false} axisLine={false}/><Tooltip/><Bar dataKey="hours" fill="#0f172a" name="Study hours"/><Bar dataKey="spend" fill="#94a3b8" name="Spend ₹"/></BarChart></ResponsiveContainer></div></div>
+<div className="card p-5"><SectionTitle>Productivity pattern</SectionTitle><div className="h-72"><ResponsiveContainer><LineChart data={[{day:"Mon",score:74},{day:"Tue",score:78},{day:"Wed",score:71},{day:"Thu",score:86},{day:"Fri",score:82},{day:"Sat",score:94},{day:"Sun",score:84}]}><CartesianGrid vertical={false} strokeDasharray="3 3"/><XAxis dataKey="day" tickLine={false} axisLine={false}/><YAxis domain={[60,100]} tickLine={false} axisLine={false}/><Tooltip/><Line type="monotone" dataKey="score" stroke="#0f172a" strokeWidth={3} dot={{r:4}}/></LineChart></ResponsiveContainer></div></div>
+</div>
+<div className="mt-6 card border-slate-900 bg-slate-900 p-6 text-white"><div className="flex items-start gap-4"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10"><Sparkles/></div><div><h3 className="font-bold">LifeLog Intelligence</h3><p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Your data suggests a strong relationship between sleep and productivity. On days with 7+ hours of sleep, your average study productivity is about 18% higher. Your library sessions also have the highest average rating.</p></div></div></div>
+</div>}
