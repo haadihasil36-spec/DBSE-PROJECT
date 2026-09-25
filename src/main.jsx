@@ -3,12 +3,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { LifeLogProvider } from "./data/LifeLogContext";
+import { AuthProvider } from "./data/AuthContext";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <LifeLogProvider><App /></LifeLogProvider>
+      <AuthProvider><LifeLogProvider><App /></LifeLogProvider></AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

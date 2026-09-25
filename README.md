@@ -1,39 +1,29 @@
-# LifeLog Frontend
+# LifeLog
 
-**LifeLog — A Unified Personal Activity Intelligence Database**
+## A Unified Personal Activity Intelligence Database
 
-This version is a frontend-only demo. It now includes:
+LifeLog is a personal activity intelligence dashboard for tracking activities, study, expenses, food, transport, screen time, mood, sleep and goals.
 
-- Daily + Weekly Progress page
-- Add / edit / delete activities
-- Add / edit / delete expenses
-- Add / delete study sessions
-- Add / delete meals
-- Add / delete transport trips
-- Add / delete screen-time entries
-- Add / delete mood & sleep entries
-- Create / update / delete goals
-- Clickable daily timeline dates
-- Dashboard navigation buttons
-- Local browser persistence using `localStorage`
+### Frontend features
+- Login / registration / logout experience (frontend-only for now)
+- Daily and weekly progress views
+- Clickable data-entry forms
+- Local browser persistence with localStorage
+- Dashboard, timeline, analytics and goal tracking
+- Responsive React + Vite interface
 
-## Run
+### Demo account
+- Email: `rahul@lifelog.com`
+- Password: `demo123`
 
-```bash
-npm install
-npm run dev
-```
+> Authentication is intentionally frontend-only at this stage. It will be replaced with Express + MySQL authentication when the backend is added.
 
-Then open the local Vite URL shown in the terminal.
+### Technologies
+- React
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide React
 
-## Important
-
-No backend is connected yet. Data entered through the forms is stored only in the browser using `localStorage`. When the Express + MySQL backend is built, the local store can be replaced with API calls without changing the overall UI structure.
-
-## Project architecture
-
-React + Vite + Tailwind CSS + Recharts
-
-Planned final architecture:
-
-`React → Express REST API → MySQL`
+### Planned architecture
+React → Express API → MySQL (`lifelog_db`)

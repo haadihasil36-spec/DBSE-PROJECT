@@ -5,7 +5,7 @@ export function PageHeader({ title, description, action, actionLabel = "Add new"
   return <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
     <div>
       <div className="flex items-center gap-2">
-        {Icon && <Icon size={20} className="text-slate-500"/>}
+        {Icon && <Icon size={20} className="text-indigo-500"/>}
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">{title}</h1>
       </div>
       {description && <p className="mt-1.5 text-sm text-slate-500">{description}</p>}
@@ -15,7 +15,7 @@ export function PageHeader({ title, description, action, actionLabel = "Add new"
 }
 
 export function SectionTitle({children, action}) {
-  return <div className="mb-4 flex items-center justify-between"><h2 className="text-base font-bold text-slate-900">{children}</h2>{action}</div>
+  return <div className="mb-4 flex items-center justify-between"><h2 className="text-base font-bold tracking-tight text-slate-900">{children}</h2>{action}</div>
 }
 
 export function StatCard({ label, value, change, icon, tone = "blue" }) {
@@ -24,9 +24,9 @@ export function StatCard({ label, value, change, icon, tone = "blue" }) {
     blue: "bg-blue-50 text-blue-600", indigo: "bg-indigo-50 text-indigo-600", emerald: "bg-emerald-50 text-emerald-600",
     amber: "bg-amber-50 text-amber-600", rose: "bg-rose-50 text-rose-600", violet: "bg-violet-50 text-violet-600"
   };
-  return <div className="card p-5">
+  return <div className="card stat-card p-5">
     <div className="flex items-start justify-between"><div className={`grid h-10 w-10 place-items-center rounded-xl ${tones[tone]}`}>{<Icon size={19}/>}</div><span className="rounded-full bg-slate-50 px-2 py-1 text-[11px] font-bold text-emerald-600">{change}</span></div>
-    <p className="mt-4 text-xs font-medium text-slate-400">{label}</p><p className="mt-1 text-xl font-bold text-slate-900">{value}</p>
+    <p className="mt-4 text-xs font-medium text-slate-400">{label}</p><p className="stat-value mt-1 text-xl font-bold text-slate-900">{value}</p>
   </div>
 }
 
