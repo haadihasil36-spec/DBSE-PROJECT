@@ -162,6 +162,10 @@ async function findOwned(resource, id, userId, executor = pool, lock = false) {
 
 export async function listLogs(name, userId, date) {
   const resource = getResource(name);
+  const timeProjection = resource.start
+    ? `, DATE_FORMAT(records.${resource.start}, '%Y-%m-%d %H:%i:%s') AS ${resource.start},
+       DATE_FORMAT(records.${resource.end}, '%Y-%m-%d %H:%i:%s') AS ${resource.end}`
+    : "";
   const params = [userId];
   let dateClause = "";
   if (date !== undefined) {
@@ -169,7 +173,7 @@ export async function listLogs(name, userId, date) {
     params.push(date);
   }
   const [rows] = await pool.execute(
-    `SELECT records.*, DATE_FORMAT(daily_logs.log_date, '%Y-%m-%d') AS log_date
+    `SELECT records.*, DATE_FORMAT(daily_logs.log_date, '%Y-%m-%d') AS log_date${timeProjection}
      FROM ${resource.table} AS records
      INNER JOIN daily_logs ON daily_logs.day_id = records.day_id
      WHERE daily_logs.user_id = ?${dateClause}

@@ -62,6 +62,6 @@ export function SelectField({ label, children, ...props }) {
   return <label className="block"><span className="label">{label}</span><select className="input" {...props}>{children}</select></label>
 }
 
-export function FormActions({ onCancel, submit = "Save" }) {
-  return <div className="mt-6 flex justify-end gap-2"><button type="button" onClick={onCancel} className="btn-secondary">Cancel</button><button className="btn-primary" type="submit">{submit}</button></div>
+export function FormActions({ onCancel, submit = "Save", disabled = false }) {
+  return <div className="mt-6 flex justify-end gap-2"><button type="button" onClick={onCancel} className="btn-secondary" disabled={disabled}>Cancel</button><button className="btn-primary" type="submit" disabled={disabled}>{submit}</button></div>
 }

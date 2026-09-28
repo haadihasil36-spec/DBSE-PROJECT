@@ -17,8 +17,9 @@ import Auth from "./pages/Auth";
 import { useAuth } from "./data/AuthContext";
 
 function Protected({ children }) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const location = useLocation();
+  if (loading) return <div className="grid min-h-screen place-items-center text-sm font-medium text-slate-500">Restoring your LifeLog session…</div>;
   return user ? children : <Navigate to="/login" replace state={{ from: location.pathname }} />;
 }
 

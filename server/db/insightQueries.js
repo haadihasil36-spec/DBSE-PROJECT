@@ -84,8 +84,10 @@ export async function getDashboardQueries(userId) {
       [userId],
     ),
     pool.execute(
-      `SELECT activity.activity_id, activity.activity_name, activity.description,
-              activity.start_time, activity.end_time, category.category_name,
+            `SELECT activity.activity_id, activity.activity_name, activity.description,
+              DATE_FORMAT(activity.start_time, '%Y-%m-%d %H:%i:%s') AS start_time,
+              DATE_FORMAT(activity.end_time, '%Y-%m-%d %H:%i:%s') AS end_time,
+              category.category_name,
               location.location_name,
               DATE_FORMAT(logs.log_date, '%Y-%m-%d') AS log_date
        FROM activities AS activity

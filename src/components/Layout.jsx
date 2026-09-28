@@ -6,6 +6,8 @@ import {
   Target, Utensils, X, HeartPulse, Gauge, Plus, UserRound
 } from "lucide-react";
 import { useAuth } from "../data/AuthContext";
+import { useLifeLog } from "../data/LifeLogContext";
+import RequestStatus from "./RequestStatus";
 
 const nav = [
   ["Dashboard", "/", LayoutDashboard], ["Daily Timeline", "/timeline", Clock3],
@@ -21,6 +23,7 @@ export default function Layout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { loading, error, clearError } = useLifeLog();
 
   const handleLogout = () => { logout(); navigate("/login", { replace: true }); };
   const firstName = user?.name?.split(" ")[0] || "there";
@@ -64,7 +67,7 @@ export default function Layout({ children }) {
           <button title="Open profile settings" onClick={() => navigate("/settings")} className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 text-xs font-bold text-white shadow-sm">{user?.initials || "LL"}</button>
         </div>
       </header>
-      <div className="p-4 md:p-7">{children}</div>
+      <div className="p-4 md:p-7"><RequestStatus loading={loading} error={error} onDismiss={clearError}/>{children}</div>
     </main>
   </div>;
 }
